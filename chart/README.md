@@ -165,7 +165,6 @@ mariadb:
   enabled: false
   externalDatabase:
     host: "mysql.example.com"
-    port: 3306  # optional, defaults to 3306
 
 secrets:
   enabled: true
@@ -183,6 +182,7 @@ secrets:
 **Important Notes for External Database:**
 - The database specified in `DB_NAME` must already exist on your external database server
 - The user specified in `DB_USER` must have full permissions on that database
+- Configure `DB_PORT` in your secrets (defaults to 3306)
 - You don't need to configure `MYSQL_ROOT_PASSWORD` when using an external database
 - Ensure network connectivity between your Kubernetes cluster and the external database server
 
@@ -288,7 +288,6 @@ RomM integrates with several external services. Get API keys from:
 |------|-------------|-------|
 | `mariadb.enabled` | Enable internal MariaDB deployment | `true` |
 | `mariadb.externalDatabase.host` | External database hostname (when mariadb.enabled=false) | `""` |
-| `mariadb.externalDatabase.port` | External database port (when mariadb.enabled=false) | `3306` |
 | `mariadb.image.repository` | MariaDB image repository | `docker.io/mariadb` |
 | `mariadb.image.tag` | MariaDB image tag | `11` |
 | `mariadb.service.type` | MariaDB service type | `ClusterIP` |

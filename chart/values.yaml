@@ -244,15 +244,12 @@ mariadb:
   #   enabled: false
   #   externalDatabase:
   #     host: "mysql.example.com"
-  #     port: 3306  # optional, defaults to 3306
-  # Note: Also configure DB_USER, DB_PASSWD, and DB_NAME in secrets.data
+  # Note: Configure DB_PORT, DB_USER, DB_PASSWD, and DB_NAME in secrets.data or via romm.envFrom
   externalDatabase:
     # -- Hostname or IP of the external MariaDB/MySQL server
     host: ""
-    # -- Port of the external database (defaults to 3306 if not specified)
-    port: 3306
-    # Note: Database name, user, and password should be configured in secrets.data
-    # (DB_NAME, DB_USER, DB_PASSWD) or via externalSecrets
+    # Note: Database port, name, user, and password should be configured in secrets.data
+    # (DB_PORT, DB_NAME, DB_USER, DB_PASSWD) or via romm.envFrom referencing an external secret
 
   # -- Container image configuration
   image:

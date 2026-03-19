@@ -34,13 +34,23 @@ annotations:
     - name: Documentation
       url: https://github.com/HenriqZimer/romm-helm-chart/blob/main/chart/README.md
   artifacthub.io/changes: |
+    - kind: added
+      description: Add support for external MariaDB/MySQL databases
     - kind: changed
-      description: Add complete maintainer information with personal website
-    - kind: changed
-      description: Add Helm repository and maintainer links to Artifact Hub
+      description: DB_HOST is now dynamically generated based on mariadb.enabled setting
     - kind: fixed
-      description: Update maintainer email to henrique.zimermann@outlook.com
+      description: Fix duplicate DB_PORT environment variable error
+    - kind: changed
+      description: Simplify external database configuration (only host needed in externalDatabase)
   artifacthub.io/changesHistory: |
+    - version: 1.0.5
+      changes:
+        - kind: changed
+          description: Add complete maintainer information with personal website
+        - kind: changed
+          description: Add Helm repository and maintainer links to Artifact Hub
+        - kind: fixed
+          description: Update maintainer email to henrique.zimermann@outlook.com
     - version: 1.0.3
       changes:
         - kind: fixed

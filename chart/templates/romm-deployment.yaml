@@ -63,11 +63,6 @@ spec:
               {{- else }}
               value: {{ printf "%s-db" (include "romm.fullname" .) | quote }}
               {{- end }}
-            {{- if and (not .Values.mariadb.enabled) .Values.mariadb.externalDatabase.port }}
-            # DB_PORT for external database (overrides default from secrets)
-            - name: DB_PORT
-              value: {{ .Values.mariadb.externalDatabase.port | quote }}
-            {{- end }}
             {{- with .Values.romm.env }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
