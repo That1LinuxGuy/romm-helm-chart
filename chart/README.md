@@ -130,32 +130,61 @@ romm:
 
 ### Database Options
 
-#### Option 1: Included MariaDB (Development)
+#### Option 1: Internal MariaDB (Development/All-in-One)
+
+Deploy MariaDB as part of the Helm chart. This is ideal for development or testing.
 
 ```yaml
 mariadb:
   enabled: true
-  auth:
-    rootPassword: "your_root_password"
-    database: "romm"
-    username: "romm"
-    password: "your_password"
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClass: "your-storage-class"
+
+secrets:
+  enabled: true
+  data:
+    # Database credentials
+    DB_USER: "romm"
+    DB_PASSWD: "your_secure_password"
+    DB_NAME: "romm"
+    DB_PORT: "3306"
+    # MariaDB root password
+    MYSQL_ROOT_PASSWORD: "your_root_password"
+    # Other RomM settings...
+    ROMM_AUTH_SECRET_KEY: "your_32_char_secret_key"
 ```
 
-#### Option 2: External MariaDB (Production)
+#### Option 2: External MariaDB/MySQL (Production)
+
+Use an existing external MariaDB or MySQL database. Perfect for production deployments where you want to manage your database separately.
 
 ```yaml
 mariadb:
   enabled: false
+  externalDatabase:
+    host: "mysql.example.com"
+    port: 3306  # optional, defaults to 3306
 
 secrets:
+  enabled: true
   data:
-    DB_HOST: "your-external-mariadb-host"
-    DB_PORT: "3306"
+    # Database credentials for external database
     DB_USER: "romm"
-    DB_PASSWD: "your_password"
+    DB_PASSWD: "your_secure_password"
     DB_NAME: "romm"
+    DB_PORT: "3306"
+    # Note: MYSQL_ROOT_PASSWORD is not needed for external databases
+    # Other RomM settings...
+    ROMM_AUTH_SECRET_KEY: "your_32_char_secret_key"
 ```
+
+**Important Notes for External Database:**
+- The database specified in `DB_NAME` must already exist on your external database server
+- The user specified in `DB_USER` must have full permissions on that database
+- You don't need to configure `MYSQL_ROOT_PASSWORD` when using an external database
+- Ensure network connectivity between your Kubernetes cluster and the external database server
 
 ### Storage Configuration
 
@@ -257,11 +286,15 @@ RomM integrates with several external services. Get API keys from:
 
 | Name | Description | Value |
 |------|-------------|-------|
-| `mariadb.enabled` | Enable included MariaDB | `true` |
-| `mariadb.auth.rootPassword` | MariaDB root password | `""` |
-| `mariadb.auth.database` | MariaDB database name | `romm` |
-| `mariadb.auth.username` | MariaDB username | `romm` |
-| `mariadb.auth.password` | MariaDB password | `""` |
+| `mariadb.enabled` | Enable internal MariaDB deployment | `true` |
+| `mariadb.externalDatabase.host` | External database hostname (when mariadb.enabled=false) | `""` |
+| `mariadb.externalDatabase.port` | External database port (when mariadb.enabled=false) | `3306` |
+| `mariadb.image.repository` | MariaDB image repository | `docker.io/mariadb` |
+| `mariadb.image.tag` | MariaDB image tag | `11` |
+| `mariadb.service.type` | MariaDB service type | `ClusterIP` |
+| `mariadb.service.port` | MariaDB service port | `3306` |
+| `mariadb.persistence.enabled` | Enable MariaDB persistence | `false` |
+| `mariadb.persistence.size` | MariaDB PVC size | `10Gi` |
 
 ### Persistence Parameters
 
