@@ -4,25 +4,14 @@
 [![Helm Version](https://img.shields.io/badge/Helm-v3-blue)](https://helm.sh)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/romm-helm-chart)](https://artifacthub.io/packages/search?repo=romm-helm-chart)
 
-This repository contains a production-ready Helm chart for deploying [RomM](https://romm.app/) on Kubernetes.
-
-## About RomM
-
-RomM (Rom Manager) is a beautiful, powerful, self-hosted ROM manager for your retro gaming collection. It provides a modern web interface to organize, manage, and browse your ROM library with features like:
-
-- 🎮 Multi-platform ROM management
-- 🖼️ Automatic artwork and metadata scraping
-- 📱 Responsive web interface
-- 🔍 Advanced search and filtering
-- 👥 Multi-user support
-- 🎯 Game matching with IGDB and SteamGridDB
+This repository contains my  Helm chart implementation for deploying [RomM](https://romm.app/) on Kubernetes.
 
 ## Quick Start
 
 ### Add Helm Repository
 
 ```bash
-helm repo add romm https://henriqzimer.github.io/romm-helm-chart/
+helm repo add romm https://That1LinuxGuy.github.io/romm-helm-chart/
 helm repo update
 ```
 
@@ -57,7 +46,7 @@ For detailed installation instructions and configuration options, see the [chart
 
 - Kubernetes 1.19+
 - Helm 3.0+
-- MariaDB/MySQL database
+- MariaDB/MySQL database (only use built in DB for test workloads)
 - Persistent storage (NFS, local-path, or cloud storage)
 - (Optional) Ingress controller
 - (Optional) cert-manager for automatic TLS
@@ -66,7 +55,6 @@ For detailed installation instructions and configuration options, see the [chart
 
 This Helm chart provides:
 
-- ✅ Production-ready Kubernetes deployment
 - ✅ Built-in MariaDB support (optional)
 - ✅ Persistent volume management
 - ✅ Ingress configuration with TLS support
@@ -77,7 +65,7 @@ This Helm chart provides:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request, submit and issue, or send me an email!
 
 ## License
 
@@ -87,32 +75,8 @@ The RomM application itself is licensed under its own terms. See the [RomM repos
 
 ## Support
 
-- 🐛 [Report Issues](https://github.com/HenriqZimer/romm-helm-chart/issues)
-- 💬 [Discussions](https://github.com/HenriqZimer/romm-helm-chart/discussions)
+- 🐛 [Report Issues](https://github.com/That1LinxGuy/romm-helm-chart/issues)
+- 💬 [Discussions](https://github.com/That1LinuxGuy/romm-helm-chart/discussions)
 - 📖 [Documentation](chart/README.md)
-
-## Contributors
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/HenriqZimer"><img src="https://avatars.githubusercontent.com/u/62187338?v=4" width="100px;" alt="HenriqZimer"/><br /><sub><b>HenriqZimer</b></sub></a><br /><a href="https://github.com/HenriqZimer/romm-helm-chart/commits?author=HenriqZimer" title="Code">💻</a> <a href="https://github.com/HenriqZimer/romm-helm-chart/commits?author=HenriqZimer" title="Documentation">📖</a> <a href="#maintenance-HenriqZimer" title="Maintenance">🚧</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
----
 
 Made with ❤️ for the retro gaming community
